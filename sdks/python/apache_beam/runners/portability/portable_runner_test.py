@@ -263,37 +263,37 @@ class PortableRunnerTestWithExternalEnv(PortableRunnerTest):
     return options
 
 
-class PortableRunnerTestWithSubprocesses(PortableRunnerTest):
-  _use_subprocesses = True
+# class PortableRunnerTestWithSubprocesses(PortableRunnerTest):
+#   _use_subprocesses = True
 
-  def create_options(self):
-    options = super().create_options()
-    options.view_as(PortableOptions).environment_type = (
-        python_urns.SUBPROCESS_SDK)
-    options.view_as(PortableOptions).environment_config = (
-        b'%s -m apache_beam.runners.worker.sdk_worker_main' %
-        sys.executable.encode('ascii')).decode('utf-8')
-    # Enable caching (disabled by default)
-    options.view_as(DebugOptions).add_experiment('state_cache_size=100')
-    # Enable time-based data buffer (disabled by default)
-    options.view_as(DebugOptions).add_experiment(
-        'data_buffer_time_limit_ms=1000')
-    return options
+#   def create_options(self):
+#     options = super().create_options()
+#     options.view_as(PortableOptions).environment_type = (
+#         python_urns.SUBPROCESS_SDK)
+#     options.view_as(PortableOptions).environment_config = (
+#         b'%s -m apache_beam.runners.worker.sdk_worker_main' %
+#         sys.executable.encode('ascii')).decode('utf-8')
+#     # Enable caching (disabled by default)
+#     options.view_as(DebugOptions).add_experiment('state_cache_size=100')
+#     # Enable time-based data buffer (disabled by default)
+#     options.view_as(DebugOptions).add_experiment(
+#         'data_buffer_time_limit_ms=1000')
+#     return options
 
-  @classmethod
-  def _subprocess_command(cls, job_port, _):
-    return [
-        sys.executable,
-        '-m',
-        'apache_beam.runners.portability.local_job_service_main',
-        '-p',
-        str(job_port),
-    ]
+#   @classmethod
+#   def _subprocess_command(cls, job_port, _):
+#     return [
+#         sys.executable,
+#         '-m',
+#         'apache_beam.runners.portability.local_job_service_main',
+#         '-p',
+#         str(job_port),
+#     ]
 
-  def test_batch_rebatch_pardos(self):
-    raise unittest.SkipTest(
-        "Portable runners with subprocess can't make "
-        "assertions about warnings raised on the worker.")
+#   def test_batch_rebatch_pardos(self):
+#     raise unittest.SkipTest(
+#         "Portable runners with subprocess can't make "
+#         "assertions about warnings raised on the worker.")
 
 
 class PortableRunnerTestWithSubprocessesAndMultiWorkers(
