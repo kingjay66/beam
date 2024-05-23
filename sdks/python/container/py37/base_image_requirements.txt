@@ -101,7 +101,7 @@ pycparser==2.21
 pydot==1.4.2
 PyHamcrest==2.0.4
 pymongo==4.3.3
-PyMySQL==1.0.3
+PyMySQL==1.1.1
 pyparsing==3.0.9
 pytest==7.3.1
 pytest-timeout==2.1.0
