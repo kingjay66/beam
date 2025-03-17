@@ -16,7 +16,7 @@
 # limitations under the License.
 ###############################################################################
 
-FROM golang:1.20-bullseye
+FROM golang:1.24rc1-bullseye
 
 WORKDIR /usr/src/app
 COPY go.mod ./
