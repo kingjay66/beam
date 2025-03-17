@@ -18,3 +18,4 @@ apache-beam==2.41.0
 apache-beam[test]==2.41.0
 
 pytz~=2022.2.1
+orjson>=3.9.15 # not directly required, pinned by Snyk to avoid a vulnerability
